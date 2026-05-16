@@ -134,9 +134,10 @@ function Hero() {
           </dl>
         </div>
         <div className="md:col-span-5">
-          <div className="relative">
-            <div className="absolute -inset-3 -z-10 rounded-[2rem] bg-sage/40 blur-2xl" />
-            <img src={siteConfig.images.hero} alt={siteConfig.hero.imageAlt} width={1600} height={1200} className="aspect-[4/5] w-full rounded-[1.5rem] object-cover shadow-[0_30px_60px_-30px_oklch(0.22_0.02_160/0.35)]" />
+          <div className="relative rounded-[1.75rem] border border-sage-deep/15 bg-[linear-gradient(145deg,oklch(0.88_0.035_150),oklch(0.96_0.014_95))] p-2 shadow-[0_35px_80px_-45px_oklch(0.22_0.02_160/0.65)]">
+            <div className="absolute -inset-4 -z-10 rounded-[2rem] bg-sage-deep/15 blur-3xl" />
+            <img src={siteConfig.images.hero} alt={siteConfig.hero.imageAlt} width={1600} height={1200} className="aspect-[4/5] w-full rounded-[1.25rem] object-cover contrast-[1.04] saturate-[1.04]" />
+            <div className="pointer-events-none absolute inset-2 rounded-[1.25rem] ring-1 ring-ink/10" />
             <div className="absolute -bottom-5 -left-5 hidden rounded-2xl border border-border bg-card p-4 shadow-lg sm:block">
               <div className="flex items-center gap-2 text-sm">
                 <Star className="h-4 w-4 fill-clay text-clay" />
@@ -218,7 +219,10 @@ function About() {
     <section id="o-nas" className="border-y border-border bg-cream/60">
       <div className="mx-auto grid max-w-6xl gap-12 px-5 py-20 md:grid-cols-12 md:py-28">
         <div className="md:col-span-5">
-          <img src={siteConfig.images.therapist} alt={siteConfig.therapist.imageAlt} width={1024} height={1280} loading="lazy" className="aspect-[4/5] w-full rounded-[1.5rem] object-cover" />
+          <div className="relative rounded-[1.75rem] border border-sage-deep/15 bg-[linear-gradient(145deg,oklch(0.87_0.03_150),oklch(0.96_0.012_95))] p-2 shadow-[0_30px_70px_-45px_oklch(0.22_0.02_160/0.55)]">
+            <img src={siteConfig.images.therapist} alt={siteConfig.therapist.imageAlt} width={1024} height={1280} loading="lazy" className="aspect-[4/5] w-full rounded-[1.25rem] object-cover contrast-[1.05] saturate-[1.05]" />
+            <div className="pointer-events-none absolute inset-2 rounded-[1.25rem] ring-1 ring-ink/10" />
+          </div>
         </div>
         <div className="md:col-span-7 md:pl-4">
           <p className="text-sm uppercase tracking-[0.18em] text-sage-deep">O nás</p>
