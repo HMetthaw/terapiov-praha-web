@@ -9,6 +9,7 @@ import {
 } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
+import { siteConfig } from "@/site.config";
 
 function NotFoundComponent() {
   return (
@@ -72,14 +73,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: siteConfig.seo.title },
+      { name: "description", content: siteConfig.seo.description },
+      { name: "author", content: siteConfig.legalName },
+      { property: "og:title", content: siteConfig.seo.ogTitle },
+      { property: "og:description", content: siteConfig.seo.ogDescription },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:site", content: siteConfig.name },
     ],
     links: [
       {
@@ -96,7 +97,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="cs">
       <head>
         <HeadContent />
       </head>
