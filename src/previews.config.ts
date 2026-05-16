@@ -1,4 +1,5 @@
 import { siteConfig, type SiteConfig } from "@/site.config";
+import heroPatientDarkImg from "@/assets/hero-physio-patient-dark.jpg";
 
 export const previewConfigs: Record<string, SiteConfig> = {
   "rehabilitace-broumovska": {
@@ -25,6 +26,10 @@ export const previewConfigs: Record<string, SiteConfig> = {
       ogTitle: "Rehabilitace Broumovská | Rehabilitace a fyzioterapie Liberec",
       ogDescription:
         "Přehledný návrh webu pro rehabilitační ordinaci v Liberci se snadným kontaktem, službami a ceníkem.",
+    },
+    images: {
+      ...siteConfig.images,
+      hero: heroPatientDarkImg,
     },
     hero: {
       eyebrow: "Rehabilitace a fyzioterapie · Liberec 6",

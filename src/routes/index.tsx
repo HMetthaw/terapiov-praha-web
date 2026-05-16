@@ -136,7 +136,7 @@ function Hero() {
         <div className="md:col-span-5">
           <div className="relative rounded-[1.75rem] border border-sage-deep/15 bg-[linear-gradient(145deg,oklch(0.88_0.035_150),oklch(0.96_0.014_95))] p-2 shadow-[0_35px_80px_-45px_oklch(0.22_0.02_160/0.65)]">
             <div className="absolute -inset-4 -z-10 rounded-[2rem] bg-sage-deep/15 blur-3xl" />
-            <img src={siteConfig.images.hero} alt={siteConfig.hero.imageAlt} width={1600} height={1200} className="aspect-[4/5] w-full rounded-[1.25rem] object-cover contrast-[1.04] saturate-[1.04]" />
+            <img src={siteConfig.images.hero} alt={siteConfig.hero.imageAlt} width={1600} height={1200} className="aspect-[4/5] w-full rounded-[1.25rem] object-cover contrast-[1.05] saturate-[1.05]" />
             <div className="pointer-events-none absolute inset-2 rounded-[1.25rem] ring-1 ring-ink/10" />
             <div className="absolute -bottom-5 -left-5 hidden rounded-2xl border border-border bg-card p-4 shadow-lg sm:block">
               <div className="flex items-center gap-2 text-sm">
