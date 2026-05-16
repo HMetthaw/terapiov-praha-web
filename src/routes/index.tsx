@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { createContext, useContext, useState } from "react";
 import {
   Activity,
   Bandage,
@@ -15,15 +15,18 @@ import {
   Star,
   type LucideIcon,
 } from "lucide-react";
-import { siteConfig } from "@/site.config";
+import { siteConfig as defaultSiteConfig, type SiteConfig } from "@/site.config";
+
+const SiteConfigContext = createContext<SiteConfig>(defaultSiteConfig);
+const useSiteConfig = () => useContext(SiteConfigContext);
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: siteConfig.seo.title },
-      { name: "description", content: siteConfig.seo.description },
-      { property: "og:title", content: siteConfig.seo.ogTitle },
-      { property: "og:description", content: siteConfig.seo.ogDescription },
+      { title: defaultSiteConfig.seo.title },
+      { name: "description", content: defaultSiteConfig.seo.description },
+      { property: "og:title", content: defaultSiteConfig.seo.ogTitle },
+      { property: "og:description", content: defaultSiteConfig.seo.ogDescription },
       { property: "og:type", content: "website" },
     ],
     links: [
@@ -41,27 +44,35 @@ export const Route = createFileRoute("/")({
 const serviceIcons = [Activity, Bandage, Dumbbell, HeartPulse];
 
 function Home() {
+  return <SitePage config={defaultSiteConfig} />;
+}
+
+export function SitePage({ config = defaultSiteConfig }: { config?: SiteConfig }) {
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <Nav />
-      <main>
-        <Hero />
-        <TrustStrip />
-        <Services />
-        <About />
-        <Process />
-        <Pricing />
-        <Testimonials />
-        <Faq />
-        <Contact />
-      </main>
-      <Footer />
-      <MobileCallBar />
-    </div>
+    <SiteConfigContext.Provider value={config}>
+      <div className="min-h-screen bg-background text-foreground">
+        <Nav />
+        <main>
+          <Hero />
+          <TrustStrip />
+          <Services />
+          <About />
+          <Process />
+          <Pricing />
+          <Testimonials />
+          <Faq />
+          <Contact />
+        </main>
+        <Footer />
+        <MobileCallBar />
+      </div>
+    </SiteConfigContext.Provider>
   );
 }
 
 function Nav() {
+  const siteConfig = useSiteConfig();
+
   return (
     <header className="sticky top-0 z-40 border-b border-border/60 bg-background/85 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5">
@@ -92,6 +103,8 @@ function Nav() {
 }
 
 function Hero() {
+  const siteConfig = useSiteConfig();
+
   return (
     <section className="relative overflow-hidden">
       <div className="mx-auto grid max-w-6xl gap-10 px-5 pb-16 pt-10 md:grid-cols-12 md:gap-12 md:pb-24 md:pt-20">
@@ -151,6 +164,8 @@ function InfoItem({ icon: Icon, label, value, wide = false }: { icon: LucideIcon
 }
 
 function TrustStrip() {
+  const siteConfig = useSiteConfig();
+
   return (
     <section className="border-y border-border bg-cream/60">
       <div className="mx-auto grid max-w-6xl grid-cols-2 gap-y-6 px-5 py-8 md:grid-cols-4">
@@ -166,6 +181,8 @@ function TrustStrip() {
 }
 
 function Services() {
+  const siteConfig = useSiteConfig();
+
   return (
     <section id="sluzby" className="mx-auto max-w-6xl px-5 py-20 md:py-28">
       <SectionIntro eyebrow="Naše služby" title="S čím za námi lidé nejčastěji chodí" text="Každá terapie začíná pozorným vyšetřením a rozhovorem. Až potom společně rozhodneme, jak dál." />
@@ -195,6 +212,8 @@ function Services() {
 }
 
 function About() {
+  const siteConfig = useSiteConfig();
+
   return (
     <section id="o-nas" className="border-y border-border bg-cream/60">
       <div className="mx-auto grid max-w-6xl gap-12 px-5 py-20 md:grid-cols-12 md:py-28">
@@ -220,6 +239,8 @@ function About() {
 }
 
 function Process() {
+  const siteConfig = useSiteConfig();
+
   return (
     <section id="jak-to-probiha" className="mx-auto max-w-6xl px-5 py-20 md:py-28">
       <SectionIntro eyebrow="První návštěva" title="Jak terapie probíhá" text="Klidné tempo a žádná překvapení. Od první návštěvy víte, co se bude dít." />
@@ -237,6 +258,8 @@ function Process() {
 }
 
 function Pricing() {
+  const siteConfig = useSiteConfig();
+
   return (
     <section id="cenik" className="border-y border-border bg-cream/60">
       <div className="mx-auto max-w-6xl px-5 py-20 md:py-28">
@@ -261,6 +284,8 @@ function Pricing() {
 }
 
 function Testimonials() {
+  const siteConfig = useSiteConfig();
+
   return (
     <section className="mx-auto max-w-6xl px-5 py-20 md:py-28">
       <SectionIntro eyebrow="Reference" title="Co říkají naši pacienti" />
@@ -283,6 +308,8 @@ function Testimonials() {
 }
 
 function Faq() {
+  const siteConfig = useSiteConfig();
+
   return (
     <section className="border-y border-border bg-cream/60">
       <div className="mx-auto grid max-w-6xl gap-12 px-5 py-20 md:grid-cols-12 md:py-28">
@@ -313,7 +340,9 @@ function FaqItem({ item, defaultOpen = false }: { item: { question: string; answ
 }
 
 function Contact() {
+  const siteConfig = useSiteConfig();
   const [sent, setSent] = useState(false);
+
   return (
     <section id="kontakt" className="mx-auto max-w-6xl px-5 py-20 md:py-28">
       <div className="grid gap-12 md:grid-cols-12">
@@ -395,6 +424,8 @@ function SectionIntro({ eyebrow, title, text }: { eyebrow: string; title: string
 }
 
 function Footer() {
+  const siteConfig = useSiteConfig();
+
   return (
     <footer className="border-t border-border bg-cream/60">
       <div className="mx-auto grid max-w-6xl gap-8 px-5 py-12 md:grid-cols-3">
@@ -433,6 +464,8 @@ function Footer() {
 }
 
 function MobileCallBar() {
+  const siteConfig = useSiteConfig();
+
   return (
     <div className="fixed inset-x-0 bottom-0 z-50 grid grid-cols-2 gap-2 border-t border-border bg-background/95 p-3 backdrop-blur md:hidden">
       <a href={`tel:${siteConfig.phoneTel}`} className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-4 py-3 text-sm font-medium text-primary-foreground">

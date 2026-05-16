@@ -166,4 +166,24 @@ export const siteConfig = {
   ],
 } as const;
 
-export type SiteConfig = typeof siteConfig;
+type DeepWiden<T> = T extends string
+  ? string
+  : T extends number
+    ? number
+    : T extends boolean
+      ? boolean
+      : T extends readonly (infer U)[]
+        ? DeepWiden<U>[]
+        : T extends object
+          ? { [K in keyof T]: DeepWiden<T[K]> }
+          : T;
+
+export type SiteConfig = Omit<DeepWiden<typeof siteConfig>, "pricing"> & {
+  pricing: Array<{
+    name: string;
+    price: string;
+    duration: string;
+    description: string;
+    featured?: boolean;
+  }>;
+};
