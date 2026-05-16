@@ -1,5 +1,5 @@
 import { siteConfig, type SiteConfig } from "@/site.config";
-import heroPatientDarkImg from "@/assets/hero-physio-patient-dark.jpg";
+import heroShoulderSessionImg from "@/assets/hero-physio-shoulder-session.jpg";
 
 export const previewConfigs: Record<string, SiteConfig> = {
   "rehabilitace-broumovska": {
@@ -29,7 +29,7 @@ export const previewConfigs: Record<string, SiteConfig> = {
     },
     images: {
       ...siteConfig.images,
-      hero: heroPatientDarkImg,
+      hero: heroShoulderSessionImg,
     },
     hero: {
       eyebrow: "Rehabilitace a fyzioterapie · Liberec 6",
