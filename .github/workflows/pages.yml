@@ -3,6 +3,7 @@ name: Deploy preview to GitHub Pages
 on:
   push:
     branches:
+      - main
       - codex-template-cleanup
   workflow_dispatch:
 
